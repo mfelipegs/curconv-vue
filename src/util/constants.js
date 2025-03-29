@@ -10,4 +10,5 @@ export const currencyToCountry = {
   BRL: "br",
   INR: "in",
   RUB: "ru",
+  BGN: "bg",
 };
