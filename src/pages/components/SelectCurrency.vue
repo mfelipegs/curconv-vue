@@ -1,6 +1,5 @@
 <template>
   <section v-if="availableCurrencies.length">
-    <h3>Add Currency</h3>
     <Select :options="availableCurrencies" @change="addCurrency" />
   </section>
   <section v-else>Loading...</section>

@@ -1,5 +1,6 @@
 <template>
   <select>
+    <option value="" disabled selected>Currency</option>
     <option v-for="opt in options" :key="opt" :value="opt">
       {{ opt }}
     </option>

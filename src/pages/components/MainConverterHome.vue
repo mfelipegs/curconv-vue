@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="cards-list">
+    <div v-if="uniqueSelectedCurrencies.length > 0" class="cards-list">
       <Card>
         <CurrencyItem currencyCode="USD" />
         <p v-if="!isEditing" @click="toggleEdit">{{ amount }}</p>
@@ -19,6 +19,9 @@
         <CurrencyItem :currencyCode="currency" />
         <p>{{ convertCurrency(currency) }}</p>
       </Card>
+    </div>
+    <div v-else class="cards-list">
+      <p class="equals">Select some currency</p>
     </div>
   </section>
 </template>
