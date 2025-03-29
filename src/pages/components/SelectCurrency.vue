@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 section {
-  padding: 0 1rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
