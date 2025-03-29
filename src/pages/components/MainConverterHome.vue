@@ -15,10 +15,7 @@
 
       <p class="equals">equals to</p>
 
-      <Card
-        v-for="currency in Object.keys(conversionRates).slice(1)"
-        :key="currency"
-      >
+      <Card v-for="currency in uniqueSelectedCurrencies" :key="currency">
         <CurrencyItem :currencyCode="currency" />
         <p>{{ convertCurrency(currency) }}</p>
       </Card>
@@ -27,7 +24,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 import Card from "@/components/UI/Card.vue";
 import CurrencyItem from "@/components/CurrencyItem.vue";
@@ -36,7 +33,14 @@ import { useCurrencyStore } from "@/stores/useCurrencyStore";
 import { storeToRefs } from "pinia";
 
 export default {
-  setup() {
+  props: {
+    selectedCurrencies: {
+      type: Array,
+      default: () => [],
+    },
+  },
+
+  setup(props) {
     const amount = ref(1);
     const isEditing = ref(false);
     const inputRef = ref(null);
@@ -54,7 +58,7 @@ export default {
     }
 
     const curStore = useCurrencyStore();
-    const { currencyList, conversionRates } = storeToRefs(curStore);
+    const { conversionRates } = storeToRefs(curStore);
 
     function convertCurrency(currency) {
       if (!conversionRates.value || !conversionRates.value[currency]) {
@@ -63,14 +67,17 @@ export default {
       return (amount.value * conversionRates.value[currency]).toFixed(3);
     }
 
+    const uniqueSelectedCurrencies = computed(() => [
+      ...new Set(props.selectedCurrencies),
+    ]);
+
     return {
       amount,
       isEditing,
       toggleEdit,
       inputRef,
-      currencyList,
+      uniqueSelectedCurrencies,
       convertCurrency,
-      conversionRates,
     };
   },
   name: "MainConverterHome",
