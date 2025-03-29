@@ -1,14 +1,23 @@
 <template>
-  <main>
+  <main v-if="currencyList.length">
     <h3>Select Currency</h3>
-    <Select :options="['USD', 'GBR']" />
+    <Select :options="currencyList" />
   </main>
+  <main v-else>Loading...</main>
 </template>
 
 <script>
 import Select from "@/components/UI/Select.vue";
+import { useCurrencyStore } from "@/stores/useCurrencyStore";
+import { storeToRefs } from "pinia";
 
 export default {
+  setup() {
+    const curStore = useCurrencyStore();
+    const { currencyList } = storeToRefs(curStore);
+
+    return { currencyList };
+  },
   name: "MainConverterHome",
   components: {
     Select,
