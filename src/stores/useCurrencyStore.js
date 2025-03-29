@@ -15,5 +15,6 @@ export const useCurrencyStore = defineStore("currency", {
   },
   getters: {
     currencyList: (state) => Object.keys(state.exchangeData.conversion_rates),
+    conversionRates: (state) => state.exchangeData.conversion_rates,
   },
 });

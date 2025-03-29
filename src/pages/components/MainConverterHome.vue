@@ -15,8 +15,12 @@
 
       <p class="equals">equals to</p>
 
-      <Card v-for="currency in currencyList.slice(1)" :key="currency">
+      <Card
+        v-for="currency in Object.keys(conversionRates).slice(1)"
+        :key="currency"
+      >
         <CurrencyItem :currencyCode="currency" />
+        <p>{{ convertCurrency(currency) }}</p>
       </Card>
     </div>
   </section>
@@ -50,11 +54,24 @@ export default {
     }
 
     const curStore = useCurrencyStore();
-    const { currencyList } = storeToRefs(curStore);
+    const { currencyList, conversionRates } = storeToRefs(curStore);
 
-    console.log("currencyList", currencyList);
+    function convertCurrency(currency) {
+      if (!conversionRates.value || !conversionRates.value[currency]) {
+        return "N/A";
+      }
+      return (amount.value * conversionRates.value[currency]).toFixed(3);
+    }
 
-    return { amount, isEditing, toggleEdit, inputRef, currencyList };
+    return {
+      amount,
+      isEditing,
+      toggleEdit,
+      inputRef,
+      currencyList,
+      convertCurrency,
+      conversionRates,
+    };
   },
   name: "MainConverterHome",
   components: {
