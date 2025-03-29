@@ -3,7 +3,14 @@
     <div class="cards-list">
       <Card>
         <CurrencyItem currencyCode="USD" />
-        <p>1</p>
+        <p v-if="!isEditing" @click="toggleEdit">{{ amount }}</p>
+        <input
+          v-else
+          type="number"
+          v-model="amount"
+          @blur="toggleEdit"
+          ref="inputRef"
+        />
       </Card>
 
       <p class="equals">equals to</p>
@@ -16,6 +23,8 @@
 </template>
 
 <script>
+import { ref } from "vue";
+
 import Card from "@/components/UI/Card.vue";
 import CurrencyItem from "@/components/CurrencyItem.vue";
 
@@ -24,12 +33,24 @@ import { storeToRefs } from "pinia";
 
 export default {
   setup() {
+    const amount = ref(1);
+    const isEditing = ref(false);
+    const inputRef = ref(null);
+
+    function toggleEdit() {
+      isEditing.value = !isEditing.value;
+
+      if (isEditing.value) {
+        setTimeout(() => inputRef.value?.focus(), 0);
+      }
+    }
+
     const curStore = useCurrencyStore();
     const { currencyList } = storeToRefs(curStore);
 
     console.log("currencyList", currencyList);
 
-    return { currencyList };
+    return { amount, isEditing, toggleEdit, inputRef, currencyList };
   },
   name: "MainConverterHome",
   components: {

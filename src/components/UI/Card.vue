@@ -20,4 +20,17 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+
+::v-deep(input) {
+  width: 100px;
+
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  justify-content: end;
+
+  text-align: right;
+  padding: 2px;
+}
 </style>
