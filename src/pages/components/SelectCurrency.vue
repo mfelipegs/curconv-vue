@@ -1,11 +1,13 @@
 <template>
-  <section>
-    <Card>1 USD</Card>
+  <section v-if="currencyList.length">
+    <h3>Add Currency</h3>
+    <Select :options="currencyList.slice(1)" />
   </section>
+  <section v-else>Loading...</section>
 </template>
 
 <script>
-import Card from "@/components/UI/Card.vue";
+import Select from "@/components/UI/Select.vue";
 import { useCurrencyStore } from "@/stores/useCurrencyStore";
 import { storeToRefs } from "pinia";
 
@@ -16,9 +18,9 @@ export default {
 
     return { currencyList };
   },
-  name: "MainConverterHome",
+  name: "SelectCurrency",
   components: {
-    Card,
+    Select,
   },
 };
 </script>
@@ -29,6 +31,11 @@ section {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
+}
+
+h3 {
+  color: rgb(160, 160, 160);
+  font-weight: 500;
 }
 </style>

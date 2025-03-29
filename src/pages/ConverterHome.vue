@@ -1,10 +1,14 @@
 <template>
   <UIHeader />
-  <MainConverterHome />
+  <main>
+    <SelectCurrency />
+    <MainConverterHome />
+  </main>
 </template>
 
 <script>
 import UIHeader from "../components/UI/Header.vue";
+import SelectCurrency from "./components/SelectCurrency.vue";
 import MainConverterHome from "./components/MainConverterHome.vue";
 import { useCurrencyStore } from "@/stores/useCurrencyStore";
 
@@ -30,6 +34,7 @@ export default {
   name: "ConverterHome",
   components: {
     UIHeader,
+    SelectCurrency,
     MainConverterHome,
   },
 };
