@@ -1,14 +1,14 @@
 <template>
-  <UIHeader />
+  <ConverterHome />
 </template>
 
 <script>
-import UIHeader from "./components/UI/Header.vue";
+import ConverterHome from "./pages/ConverterHome.vue";
 
 export default {
   name: "App",
   components: {
-    UIHeader,
+    ConverterHome,
   },
 };
 </script>
