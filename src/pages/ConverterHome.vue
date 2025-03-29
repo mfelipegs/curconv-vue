@@ -1,13 +1,13 @@
 <template>
   <UIHeader />
   <main>
-    <SelectCurrency />
-    <MainConverterHome />
+    <SelectCurrency @currency-selected="handleCurrencySelected" />
+    <MainConverterHome :selectedCurrencies="selectedCurrencies" />
   </main>
 </template>
 
 <script>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 import UIHeader from "../components/UI/Header.vue";
 import SelectCurrency from "./components/SelectCurrency.vue";
@@ -18,6 +18,7 @@ import { useCurrencyStore } from "@/stores/useCurrencyStore";
 export default {
   setup() {
     const curStore = useCurrencyStore();
+    const selectedCurrencies = ref([]);
 
     onMounted(() => {
       curStore.setExchangeData({
@@ -34,7 +35,13 @@ export default {
       });
     });
 
-    return {};
+    function handleCurrencySelected(currency) {
+      if (!selectedCurrencies.value.includes(currency)) {
+        selectedCurrencies.value.push(currency);
+      }
+    }
+
+    return { selectedCurrencies, handleCurrencySelected };
   },
   name: "ConverterHome",
   components: {

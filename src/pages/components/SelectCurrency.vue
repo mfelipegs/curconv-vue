@@ -1,23 +1,30 @@
 <template>
-  <section v-if="currencyList.length">
-    <h3>Add Currency</h3>
-    <Select :options="currencyList.slice(1)" />
+  <section v-if="availableCurrencies.length">
+    <Select :options="availableCurrencies" @change="addCurrency" />
   </section>
   <section v-else>Loading...</section>
 </template>
 
 <script>
+import { computed } from "vue";
+
 import Select from "@/components/UI/Select.vue";
 
 import { useCurrencyStore } from "@/stores/useCurrencyStore";
 import { storeToRefs } from "pinia";
 
 export default {
-  setup() {
+  setup(props, { emit }) {
     const curStore = useCurrencyStore();
     const { currencyList } = storeToRefs(curStore);
 
-    return { currencyList };
+    const availableCurrencies = computed(() => currencyList.value.slice(1));
+
+    function addCurrency(event) {
+      emit("currency-selected", event.target.value);
+    }
+
+    return { availableCurrencies, addCurrency };
   },
   name: "SelectCurrency",
   components: {
