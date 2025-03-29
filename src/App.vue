@@ -40,6 +40,8 @@ body {
   line-height: 1.5;
   /* 4. Improve text rendering */
   -webkit-font-smoothing: antialiased;
+
+  background-color: rgb(245, 245, 245);
 }
 
 /* 5. Improve media defaults */
