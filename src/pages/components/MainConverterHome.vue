@@ -1,16 +1,17 @@
 <template>
   <section>
-    <Card>
-      <CurrencyItem currencyCode="USD" />
+    <div class="cards-list">
+      <Card>
+        <CurrencyItem currencyCode="USD" />
+        <p>1</p>
+      </Card>
 
-      1
-    </Card>
+      <p class="equals">equals to</p>
 
-    <p>=</p>
-
-    <Card v-for="currency in currencyList.slice(1)" :key="currency">
-      <CurrencyItem :currencyCode="currency" />
-    </Card>
+      <Card v-for="currency in currencyList.slice(1)" :key="currency">
+        <CurrencyItem :currencyCode="currency" />
+      </Card>
+    </div>
   </section>
 </template>
 
@@ -45,5 +46,19 @@ section {
   justify-content: center;
   flex-direction: column;
   gap: 10px;
+}
+
+.cards-list {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.equals {
+  text-align: center;
+  color: #989898;
+  font-size: 1rem;
 }
 </style>
