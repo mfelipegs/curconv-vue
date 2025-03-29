@@ -8,6 +8,7 @@
 
 <script>
 import Select from "@/components/UI/Select.vue";
+
 import { useCurrencyStore } from "@/stores/useCurrencyStore";
 import { storeToRefs } from "pinia";
 

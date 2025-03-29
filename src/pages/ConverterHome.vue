@@ -10,6 +10,7 @@
 import UIHeader from "../components/UI/Header.vue";
 import SelectCurrency from "./components/SelectCurrency.vue";
 import MainConverterHome from "./components/MainConverterHome.vue";
+
 import { useCurrencyStore } from "@/stores/useCurrencyStore";
 
 export default {
@@ -39,3 +40,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+</style>

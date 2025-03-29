@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div class="card">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -9,8 +11,11 @@ export default {
 </script>
 
 <style scoped>
-div {
+.card {
   background-color: #ffffff;
   border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: inline-block;
 }
 </style>
