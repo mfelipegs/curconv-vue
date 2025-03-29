@@ -1,7 +1,7 @@
 <template>
   <main v-if="currencyList.length">
     <h3>Select Currency</h3>
-    <Select :options="currencyList" />
+    <Select :options="currencyList.slice(1)" />
   </main>
   <main v-else>Loading...</main>
 </template>
@@ -28,6 +28,10 @@ export default {
 <style scoped>
 main {
   padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
 }
 
 h3 {
