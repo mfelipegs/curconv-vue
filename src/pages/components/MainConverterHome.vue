@@ -43,6 +43,10 @@ export default {
       if (isEditing.value) {
         setTimeout(() => inputRef.value?.focus(), 0);
       }
+
+      if (!amount.value) {
+        amount.value = 1;
+      }
     }
 
     const curStore = useCurrencyStore();
